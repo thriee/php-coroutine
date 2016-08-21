@@ -1,0 +1,12 @@
+{
+    "name": "root/coroutine",
+    "description": "coroutine",
+    "type": "no",
+    "license": "MIT",
+    "require": {},
+    "autoload":{
+    	"psr-4":{
+    		"Coroutine\\":"src/"
+    	}
+    }
+}
