@@ -39,30 +39,27 @@ function killTask($tid)
 
 function childTask()
 {
-    $tid = yield getTaskId();
+    $tid = (yield getTaskId());
     while (true) {
         echo "Child task $tid still alive!\n";
         yield;
     }
 }
 
+
 function task()
 {
-    $tid = yield getTaskId();
-    $childTid = yield childTask();
+    $tid = (yield getTaskId());
+    $childTid = (yield newTask(childTask()));
 
-    for ($i = 0; $i < 6; $i++) {
+    for ($i = 1; $i <= 6; ++$i) {
         echo "Parent task $tid iteration $i.\n";
         yield;
 
-        if ($i == 3) {
-            yield killTask($childTid);
-        }
+        if ($i == 3) yield killTask($childTid);
     }
-
 }
 
-$sch = new Scheduler();
-$sch->newTask(task());
-
-$sch->run();
+$scheduler = new Scheduler;
+$scheduler->newTask(task());
+$scheduler->run();
