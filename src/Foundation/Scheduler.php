@@ -46,6 +46,23 @@ class Scheduler
                 $this->taskQueue->enqueue($task);
             }
         }
-        return $this;
+    }
+
+    public function killTask($taskId)
+    {
+        if (!isset($this->taskMap[$taskId])) {
+            return false;
+        }
+
+        unset($this->taskMap[$taskId]);
+
+        foreach ($this->taskQueue as $i => $task) {
+            if ($task->getTaskId() == $taskId) {
+                unset($this->taskQueue[$i]);
+                break;
+            }
+        }
+
+        return true;
     }
 }
