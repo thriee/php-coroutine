@@ -56,7 +56,9 @@ function task()
         echo "Parent task $tid iteration $i.\n";
         yield;
 
-        if ($i == 3) yield killTask($childTid);
+        if ($i == 3) {
+            yield killTask($childTid);
+        }
     }
 }
 
