@@ -19,7 +19,6 @@ class Scheduler
         $tid = ++$this->maxTaskId;
         $task = new Task($tid, $coroutine);
         $this->taskMap[$tid] = $task;
-        print_r($this->taskMap); die;
         $this->schedule($task);
         return $tid;
     }
