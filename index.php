@@ -2,14 +2,13 @@
 
 include "vendor/autoload.php";
 
+use Coroutine\Foundation\Command\SysCall;
 use Coroutine\Foundation\Scheduler;
-
-require __DIR__ . "/src/Foundation/Command/Task.php";
 
 
 function childTask()
 {
-    $tid = yield getTaskId();
+    $tid = yield SysCall::getTaskId();
     while (true) {
         echo "Child task $tid still alive!\n";
         yield;
@@ -19,14 +18,14 @@ function childTask()
 
 function task()
 {
-    $tid = yield getTaskId();
-    $childTid = yield newTask(childTask());
+    $tid = yield SysCall::getTaskId();
+    $childTid = yield SysCall::newTask(childTask());
 
     for ($i = 1; $i <= 6; ++$i) {
         echo "Parent task $tid iteration $i.\n";
         yield;
         if ($i == 3) {
-            yield killTask($childTid);
+            yield SysCall::killTask($childTid);
         }
     }
 }
