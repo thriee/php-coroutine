@@ -2,6 +2,9 @@
 
 namespace Coroutine\Foundation;
 
+use SplQueue;
+use Generator;
+
 class Scheduler
 {
     protected $taskQueue;
@@ -11,10 +14,10 @@ class Scheduler
 
     public function __construct()
     {
-        $this->taskQueue = new \SplQueue();
+        $this->taskQueue = new SplQueue();
     }
 
-    public function newTask(\Generator $coroutine)
+    public function newTask(Generator $coroutine)
     {
         $tid = ++$this->maxTaskId;
         $task = new Task($tid, $coroutine);

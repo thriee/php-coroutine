@@ -2,6 +2,8 @@
 
 namespace Coroutine\Foundation;
 
+use Generator;
+
 class Task
 {
 
@@ -10,8 +12,7 @@ class Task
     protected $beforeFirstYield = true;
     protected $sendValue = null;
 
-
-    public function __construct($taskId, \Generator $coroutine)
+    public function __construct($taskId, Generator $coroutine)
     {
         $this->taskId = $taskId;
         $this->coroutine = $coroutine;
