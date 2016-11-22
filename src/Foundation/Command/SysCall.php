@@ -3,9 +3,10 @@
 
 namespace Coroutine\Foundation\Command;
 
+use Coroutine\Foundation\Scheduler;
 use Coroutine\Foundation\SystemCall;
 use Coroutine\Foundation\Task;
-use Coroutine\Foundation\Scheduler;
+use Generator;
 
 
 class SysCall
@@ -20,7 +21,7 @@ class SysCall
         );
     }
 
-    public static function newTask(\Generator $coroutine = null)
+    public static function newTask(Generator $coroutine = null)
     {
         return new SystemCall(
             function (Task $task, Scheduler $scheduler) use ($coroutine) {

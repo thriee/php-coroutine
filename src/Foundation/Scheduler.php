@@ -2,8 +2,8 @@
 
 namespace Coroutine\Foundation;
 
-use SplQueue;
 use Generator;
+use SplQueue;
 
 class Scheduler
 {
