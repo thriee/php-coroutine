@@ -19,11 +19,11 @@ class Scheduler
 
     public function newTask(Generator $coroutine)
     {
-        $tid = ++$this->maxTaskId;
-        $task = new Task($tid, $coroutine);
-        $this->taskMap[$tid] = $task;
+        $taskId = TaskId::create();
+        $task = new Task($taskId, $coroutine);
+        $this->taskMap[$taskId] = $task;
         $this->schedule($task);
-        return $tid;
+        return $taskId;
     }
 
     public function schedule(Task $task)
@@ -102,7 +102,7 @@ class Scheduler
             $wSocks[] = $socket;
         }
 
-        $eSocks = []; // dummy
+        $eSocks = [];
 
         if (!stream_select($rSocks, $wSocks, $eSocks, $timeout)) {
             return;
