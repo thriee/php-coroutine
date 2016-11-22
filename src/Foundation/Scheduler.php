@@ -31,9 +31,9 @@ class Scheduler
         $this->taskQueue->enqueue($task);
     }
 
-
     public function run()
     {
+        /** @var \Coroutine\Foundation\Task $task */
         while (!$this->taskQueue->isEmpty()) {
             $task = $this->taskQueue->dequeue();
             $retval = $task->run();
