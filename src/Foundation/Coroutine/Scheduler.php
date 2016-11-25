@@ -1,9 +1,6 @@
 <?php
 
-namespace Coroutine\Foundation;
-
-use Generator;
-use SplQueue;
+namespace Bee\Framework\Foundation\Coroutine;
 
 class Scheduler
 {
@@ -11,13 +8,12 @@ class Scheduler
     protected $taskMap = [];
     protected $maxTaskId = 0;
 
-
     public function __construct()
     {
-        $this->taskQueue = new SplQueue();
+        $this->taskQueue = new \SplQueue();
     }
 
-    public function newTask(Generator $coroutine)
+    public function newTask(\Generator $coroutine)
     {
         $taskId = TaskId::create();
         $task = new Task($taskId, $coroutine);

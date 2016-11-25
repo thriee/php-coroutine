@@ -1,8 +1,6 @@
 <?php
 
-namespace Coroutine\Foundation;
-
-use Generator;
+namespace Bee\Framework\Foundation\Coroutine;
 
 class Task
 {
@@ -12,7 +10,7 @@ class Task
     protected $beforeFirstYield = true;
     protected $sendValue = null;
 
-    public function __construct($taskId, Generator $coroutine)
+    public function __construct($taskId, \Generator $coroutine)
     {
         $this->taskId = $taskId;
         $this->coroutine = $coroutine;

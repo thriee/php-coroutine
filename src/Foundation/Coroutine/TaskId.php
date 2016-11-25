@@ -1,7 +1,6 @@
 <?php
 
-namespace Coroutine\Foundation;
-
+namespace Bee\Framework\Foundation\Coroutine;
 
 class TaskId
 {

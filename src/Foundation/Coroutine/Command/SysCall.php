@@ -1,14 +1,11 @@
 <?php
 
+namespace Bee\Framework\Foundation\Coroutine\Command;
 
-namespace Coroutine\Foundation\Command;
-
-use Coroutine\Foundation\Scheduler;
-use Coroutine\Foundation\Signal;
-use Coroutine\Foundation\SystemCall;
-use Coroutine\Foundation\Task;
-use Generator;
-
+use Bee\Framework\Foundation\Coroutine\Scheduler;
+use Bee\Framework\Foundation\Coroutine\Signal;
+use Bee\Framework\Foundation\Coroutine\SystemCall;
+use Bee\Framework\Foundation\Coroutine\Task;
 
 class SysCall
 {
@@ -20,7 +17,7 @@ class SysCall
         });
     }
 
-    public static function newTask(Generator $coroutine = null)
+    public static function newTask(\Generator $coroutine = null)
     {
         return new SystemCall(function (Task $task, Scheduler $scheduler) use ($coroutine) {
             $task->setSendValue($scheduler->newTask($coroutine));
