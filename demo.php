@@ -2,8 +2,8 @@
 
 include "vendor/autoload.php";
 
-use Coroutine\Foundation\Scheduler;
-use Coroutine\Foundation\Command\SysCall;
+use Bee\Framework\Foundation\Coroutine\Command\SysCall;
+use Bee\Framework\Foundation\Coroutine\Scheduler;
 
 function server($port)
 {

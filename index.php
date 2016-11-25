@@ -2,9 +2,8 @@
 
 include "vendor/autoload.php";
 
-use Coroutine\Foundation\Command\SysCall;
-use Coroutine\Foundation\Scheduler;
-
+use Bee\Framework\Foundation\Coroutine\Command\SysCall;
+use Bee\Framework\Foundation\Coroutine\Scheduler;
 
 function childTask()
 {
